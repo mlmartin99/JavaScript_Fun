@@ -13,7 +13,7 @@ const boardBckgrnd = "white";
 const paddle1Color = "pink";
 const paddle2Color = "purple";
 const paddleBorder = "black";
-const ballColor = "navyblue";
+const ballColor = "blue";
 
 //define speeds and dimensions
 const ballRadius = 12.5;
@@ -53,7 +53,6 @@ gameStart();
 
 //start game
 function gameStart(){
-    console.log("Game start");
     createBall();
     nextTick();
 };
@@ -91,7 +90,17 @@ function createBall(){
 
 };
 function moveBall(){};
-function drawBall(ballX, ballY){};
+
+function drawBall(ballX, ballY){
+    context.fillStyle = ballColor;
+    context.strokeStyle = paddleBorder;
+    context.lineWidth = 2;
+    context.beginPath();
+    context.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI);
+    context.stroke();
+    context.fill();
+};
+
 function checkCollision(){};
 
 function changeDirection(event){
@@ -129,6 +138,6 @@ function changeDirection(event){
     }
 };
 
-function updateScor(){};
+function updateScore(){};
 function resetGame(){};
 
