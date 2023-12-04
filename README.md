@@ -5,4 +5,4 @@ Currently, I have two games:
 - Snake
 - Pong
 
-2023/12/03: Added pong two-player. Need to introduce single-player mode. Snake game needs updating
+2023/12/03: Added pong two-player. Need to introduce single-player mode.
