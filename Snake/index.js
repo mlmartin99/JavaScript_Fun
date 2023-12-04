@@ -1,3 +1,8 @@
+// Get the canvas element
+const snakeboard = document.querySelector("#snakeBoard");
+// Return a two dimensional drawing context
+const snakeboard_ctx = snakeboard.getContext("2d");
+
 const board_border = 'black';
 const board_background = "white";
 const snake_col = 'lightblue';
@@ -6,47 +11,51 @@ const snake_border = 'darkblue';
 let snake = [
   {x: 200, y: 200},
   {x: 190, y: 200},
-  {x: 180, y: 200},
-  {x: 170, y: 200},
-  {x: 160, y: 200}
+  {x: 180, y: 200}
 ]
 
 let score = 0;
 // True if changing direction
 let changing_direction = false;
-// Horizontal velocity
+
 let food_x;
 let food_y;
+
+// Horizontal velocity
 let dx = 10;
 // Vertical velocity
 let dy = 0;
 
+document.addEventListener("keydown", change_direction);
 
-// Get the canvas element
-const snakeboard = document.getElementById("snakeboard");
-// Return a two dimensional drawing context
-const snakeboard_ctx = snakeboard.getContext("2d");
 // Start game
 main();
 
 gen_food();
 
-document.addEventListener("keydown", change_direction);
-
 // main function called repeatedly to keep the game running
 function main() {
+    console.log("main");
+    if (has_game_ended()){
+        snake = [
+            {x: 200, y: 200},
+            {x: 190, y: 200},
+            {x: 180, y: 200}
+        ]
 
-    if (has_game_ended()) return;
+        score = 0;
+        document.getElementById('score').innerHTML = score;
+    };
 
     changing_direction = false;
     setTimeout(function onTick() {
-    clear_board();
-    drawFood();
-    move_snake();
-    drawSnake();
-    // Repeat
-    main();
-  }, 100)
+        clear_board();
+        drawFood();
+        move_snake();
+        drawSnake();
+        // Repeat
+        main();
+    }, 100)
 }
 
 // draw a border around the canvas
